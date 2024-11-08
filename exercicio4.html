@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calcular Índice de Massa Corporal</title>
+</head>
+<body>
+    <div class="calculadora">
+        <h1 class="titulo">Índice de Massa Corporal</h1>
+        
+        <div class="entrada">
+            <label>⚖️ Peso (Kg):</label>
+            <input type="number" id="peso" step="0.1">
+        </div>
+        
+        <div class="entrada">
+            <label>📏 Altura (M):</label>
+            <input type="number" id="altura" step="0.01">
+        </div>
+        
+        <button onclick="calcular()" class="calcular">
+            Calcular IMC
+        </button>
+        
+        <div id="resultado" class="resultado"></div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+body {
+    font-family: Arial;
+    background-color: #e6f3ff;
+    margin: 20px;
+}
+
+.calculadora {
+    background-color: white;
+    padding: 20px;
+    max-width: 300px;
+    border: 2px solid #00d9ff;
+    margin: auto;
+}
+
+.titulo {
+    text-align: center;
+    color: #000000;
+}
+
+.entrada {
+    margin: 10px 0;
+}
+
+.entrada label {
+    display: block;
+    margin-bottom: 5px;
+    color: #000000;
+}
+
+.entrada input {
+    width: 90%;
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
+.calcular {
+    background-color: #00d9ff;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.resultado {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    text-align: center;
+}
+
+
+
+
+
+function calcular() {
+    let peso = document.getElementById('peso').value
+    let altura = document.getElementById('altura').value
+    
+    if (peso == '' || altura == '') {
+        alert('Digite seu Peso e Altura')
+        return
+    }
+    
+    let imc = peso / (altura * altura)
+    let mensagem = 'Seu IMC é ' + imc.toFixed(1) + '<br>'
+    
+    if (imc < 18.5) {
+        mensagem += '😮 Está abaixo do Peso'
+    } else if (imc < 25) {
+        mensagem += '😊 Peso normal'
+    } else if (imc < 30) {
+        mensagem += '😐 Está com Sobrepeso'
+    } else {
+        mensagem += '😟 Está com Obesidade'
+    }
+    
+    document.getElementById('resultado').innerHTML = mensagem
+}
